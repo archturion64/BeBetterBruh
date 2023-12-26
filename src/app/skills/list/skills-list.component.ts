@@ -5,7 +5,7 @@ import { SkillsStore } from '../data/skills.store';
   selector: 'skills-skills-list',
   template: `
     <div>
-      @if (store.isLoading()) {
+      @if (store.loading()) {
         <div>Loading</div>
       } @else if (store.error()) {
         <div>{{store.error()}}</div>
