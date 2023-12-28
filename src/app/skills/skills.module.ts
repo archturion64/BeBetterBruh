@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { SkillsListComponent } from './list/skills-list.component';
 import { RouterModule, Routes } from '@angular/router';
 import { SkillsService } from './data/skills.service';
+import { LoadingIndicatorComponent } from "../common/loading-indicator/loading-indicator.component";
 
 const routes: Routes = [
   {
@@ -12,16 +13,17 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  declarations: [
-    SkillsListComponent
+    declarations: [
+        SkillsListComponent
+    ],
+    imports: [
+      CommonModule,
+      RouterModule.forChild(routes),
+      LoadingIndicatorComponent
   ],
-  imports: [
-    CommonModule,
-    RouterModule.forChild(routes)
-  ],
-  providers: [
-    SkillsService
-  ],
-  exports: [RouterModule]
+    providers: [
+        SkillsService
+    ],
+    exports: [RouterModule]
 })
 export class SkillsModule { }

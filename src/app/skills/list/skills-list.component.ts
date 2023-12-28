@@ -6,7 +6,7 @@ import { SkillsStore } from '../data/skills.store';
   template: `
     <div>
       @if (store.loading()) {
-        <div>Loading</div>
+        <common-loading-indicator></common-loading-indicator>
       } @else if (store.error()) {
         <div>{{store.error()}}</div>
       } 
