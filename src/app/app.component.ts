@@ -7,8 +7,9 @@ import { NavbarComponent } from "./navbar/navbar.component";
     selector: 'app-root',
     standalone: true,
     template: `
-      <div [attr.data-theme]="(useDarkMode ? 'dark' : 'cupcake')">
-        <app-navbar [(useDarkMode)]="useDarkMode" (useDarkModeChange)="onThemeChange($event)"></app-navbar>
+      <div class="container mx-auto min-h-screen shadow-lg flex flex-col items-center rounded-2xl"
+      [attr.data-theme]="(useDarkMode ? 'dark' : 'cupcake')">
+        <app-navbar class="w-full" [(useDarkMode)]="useDarkMode" (useDarkModeChange)="onThemeChange($event)"></app-navbar>
         <router-outlet></router-outlet>
       </div>
     `,
