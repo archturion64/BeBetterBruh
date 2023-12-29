@@ -13,17 +13,17 @@ const routes: Routes = [
 ];
 
 @NgModule({
-    declarations: [
-        SkillsListComponent
-    ],
-    imports: [
-      CommonModule,
-      RouterModule.forChild(routes),
-      LoadingIndicatorComponent
+  declarations: [
+      SkillsListComponent
   ],
-    providers: [
-        SkillsService
-    ],
-    exports: [RouterModule]
+  imports: [
+    CommonModule,
+    RouterModule.forChild(routes),
+    LoadingIndicatorComponent
+  ],
+  providers: [
+      SkillsService
+  ],
+  exports: [RouterModule]
 })
 export class SkillsModule { }
