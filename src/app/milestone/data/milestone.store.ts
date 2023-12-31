@@ -1,33 +1,33 @@
-import { patchState, signalStore, withComputed, withHooks, withMethods, withState } from "@ngrx/signals";
-import { Skill } from "./skills.model";
+import { patchState, signalStore, withHooks, withMethods, withState } from "@ngrx/signals";
 import { inject } from "@angular/core";
-import { SkillsService } from "./skills.service";
+import { MilestoneService } from "./milestone.service";
 import { rxMethod } from '@ngrx/signals/rxjs-interop';
 import { pipe, switchMap, tap } from "rxjs";
 import { tapResponse } from '@ngrx/operators';
 import { setLoading, withCallState, setError, setLoaded } from "../../common/call-state-feature";
-import { HttpErrorResponse } from "@angular/common/http";
+import { Milestone } from "../../api.model";
 
 
 
-interface SkillsState {
-    skills: Skill[],
+
+interface MilestoneState {
+    milestones: Milestone[],
 }
 
-export const SkillsStore = signalStore(
-    withState<SkillsState>({
-        skills: [],
+export const MilestoneStore = signalStore(
+    withState<MilestoneState>({
+        milestones: [],
     }),
     withCallState(),
     withCallState('update'),
-    withMethods((store, skillsService = inject(SkillsService)) => ({
-        loadSkills: rxMethod<void>(
+    withMethods((store, milestoneService = inject(MilestoneService)) => ({
+        loadMilestones: rxMethod<void>(
             pipe(
                 tap(() => patchState(store, setLoading())),
-                switchMap(() =>  skillsService.getSkills().pipe(
+                switchMap(() =>  milestoneService.getMilestones().pipe(
                     tapResponse({
-                        next: (skills) => {
-                            patchState(store, {skills});
+                        next: (milestones) => {
+                            patchState(store, {milestones});
                             patchState(store, setLoaded());
                         },
                         error: (err: Error) => patchState(store, setError(err.message))
@@ -38,7 +38,7 @@ export const SkillsStore = signalStore(
     })),
     withHooks({
         onInit(store) {
-            store.loadSkills()
+            store.loadMilestones()
         }
     })
 );

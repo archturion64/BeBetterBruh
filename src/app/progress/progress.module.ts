@@ -1,20 +1,20 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { SkillsListComponent } from './list/skills-list.component';
+import { ListComponent } from './list/list.component';
 import { RouterModule, Routes } from '@angular/router';
-import { SkillsService } from './data/skills.service';
-import { LoadingIndicatorComponent } from "../common/loading-indicator/loading-indicator.component";
+import { LoadingIndicatorComponent } from '../common/loading-indicator/loading-indicator.component';
+import { ProgressService } from './data/progress.service';
 
 const routes: Routes = [
   {
     path: '',
-    component: SkillsListComponent
+    component: ListComponent
   }
 ];
 
 @NgModule({
   declarations: [
-      SkillsListComponent
+    ListComponent
   ],
   imports: [
     CommonModule,
@@ -22,8 +22,8 @@ const routes: Routes = [
     LoadingIndicatorComponent
   ],
   providers: [
-      SkillsService
+    ProgressService
   ],
   exports: [RouterModule]
 })
-export class SkillsModule { }
+export class ProgressModule { }

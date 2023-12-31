@@ -9,19 +9,46 @@ import { filter, map } from 'rxjs';
   standalone: true,
   imports: [RouterModule, ThemeSwitcherComponent, CommonModule],
   template: `
-  <div class="navbar grid grid-cols-6 gap-4 bg-primary rounded-xl">
-    @if(routerUrl$ | async; as routerUrl) {
-      <a class="btn btn-ghost text-xl col-span-1" 
-      [ngClass]="routerUrl == '/' ? '!bg-secondary' : '' "  
-      [routerLink] = "['/']">
-      Home
-    </a>
-    <a class="btn btn-ghost text-xl col-span-1  " 
-      [ngClass]="routerUrl == '/skills' ? '!bg-secondary' : '' "  
-      [routerLink] = "['/skills']">
-      Skills
-    </a>
-    }
+  <div class="navbar grid bg-primary rounded-xl">
+    <div class="md:navbar-start">
+      <div class="md:dropdown">
+      <div tabindex="0" role="button" class="hidden md:btn btn-ghost btn-circle">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h7" /></svg>
+      </div>
+          @if(routerUrl$ | async; as routerUrl) {
+          <ul tabindex="0" class=" flex gap-4 md:menu md:menu-sm dropdown-content md:mt-3 md:z-[99] md:p-2 md:shadow md:bg-base-100 md:rounded-box md:w-52">
+            <li>
+              <a class="btn btn-ghost text-xl col-span-1" 
+                [ngClass]="routerUrl == '/' ? '!bg-secondary' : '' "  
+                [routerLink] = "['/']">
+                Home
+              </a>
+            </li>
+            <li>
+              <a class="btn btn-ghost text-xl col-span-1  " 
+                [ngClass]="routerUrl == '/progress' ? '!bg-secondary' : '' "  
+                [routerLink] = "['/progress']">
+                My Progress
+              </a>
+            </li>
+            <li>
+              <a class="btn btn-ghost text-xl col-span-1  " 
+                [ngClass]="routerUrl == '/milestones' ? '!bg-secondary' : '' "  
+                [routerLink] = "['/milestones']">
+                Milestones
+              </a>
+            </li>
+            <li>
+              <a class="btn btn-ghost text-xl col-span-1  " 
+                [ngClass]="routerUrl == '/achievements' ? '!bg-secondary' : '' "  
+                [routerLink] = "['/achievements']">
+                Achievements
+              </a>
+            </li>
+          </ul>
+        }
+      </div>
+    </div>
 
     <app-theme-switcher class="col-end-7 col-span-1" [useDarkMode]="useDarkMode" (useDarkModeChange)="useDarkModeChange.emit($event)"></app-theme-switcher>
   </div>

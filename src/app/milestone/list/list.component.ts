@@ -1,8 +1,11 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
-import { SkillsStore } from '../data/skills.store';
+import { MilestoneStore } from '../data/milestone.store';
 
 @Component({
-  selector: 'skills-skills-list',
+  selector: 'milestone-list',
+  host: {
+    class:'w-full'
+  },
   template: `
     <div>
       @if (store.loading()) {
@@ -12,17 +15,17 @@ import { SkillsStore } from '../data/skills.store';
       } 
     </div>
     <div>
-      @for (skill of store.skills(); track skill.id) {
-        {{ skill.name }}
+      @for (milestone of store.milestones(); track milestone.id) {
+        {{ milestone.name }}
       }
     </div>
   `,
   styles: ``,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  providers: [SkillsStore]
+  providers: [MilestoneStore]
 })
-export class SkillsListComponent {
+export class ListComponent {
 
-  store = inject(SkillsStore);
+  store = inject(MilestoneStore);
 
 }
