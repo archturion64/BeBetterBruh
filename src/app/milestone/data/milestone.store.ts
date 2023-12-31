@@ -5,13 +5,13 @@ import { rxMethod } from '@ngrx/signals/rxjs-interop';
 import { pipe, switchMap, tap } from "rxjs";
 import { tapResponse } from '@ngrx/operators';
 import { setLoading, withCallState, setError, setLoaded } from "../../common/call-state-feature";
-import { Milestone } from "../../api.model";
+import { MilestoneItem } from "../../api.model";
 
 
 
 
 interface MilestoneState {
-    milestones: Milestone[],
+    milestones: MilestoneItem[],
 }
 
 export const MilestoneStore = signalStore(

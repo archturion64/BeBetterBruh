@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Achievement, Milestone, MilestoneDetails, MilestoneProgress, UserProgress } from './api.model';
+import { Achievement, Milestone, MilestoneDetails, MilestoneItem, MilestoneProgress, UserProgress } from './api.model';
 
 
 interface UserMilestones {
@@ -105,6 +105,73 @@ export class BackEndSimService {
     this.path0, this.path1, this.path2, this.path3
   ]
 
+  private milestoneItems: MilestoneItem[] = [
+    {
+      ...this.milestone0,
+      description: "Learn the building blocks of the web page structure."
+    },
+    {
+      ...this.milestone1,
+      description: "Change, move, resize and color the web page."
+    },
+    {
+      ...this.milestone2,
+      description: "Make complex CSS look easy."
+    },
+    {
+      ...this.milestone3,
+      description: "Learn commonly used patterns as part of CSS frameworks."
+    },
+    {
+      ...this.milestone4,
+      description: "Create, remove and change page elements."
+    },
+    {
+      ...this.milestone5,
+      description: "Be more productive with a more structuresd approach to JS."
+    },
+    {
+      ...this.milestone6,
+      description: "Nuild tools, package managers ans servers."
+    },
+    {
+      ...this.milestone7,
+      description: "Angular, React, Vue, Svelte ..."
+    },
+    {
+      ...this.milestone8,
+      description: "Test theory, methodology and best practices."
+    },
+    {
+      ...this.milestone9,
+      description: "Doing unit tests."
+    },
+    {
+      ...this.milestone10,
+      description: "Doing integration tests."
+    },
+    {
+      ...this.milestone11,
+      description: "End-to-end tests."
+    },
+    {
+      ...this.milestone12,
+      description: "Getting used to APIs and their quirks."
+    },
+    {
+      ...this.milestone13,
+      description: "Searching for mass assignment vulnerabilities."
+    },
+    {
+      ...this.milestone14,
+      description: "Query pollution attacks."
+    },
+    {
+      ...this.milestone15,
+      description: "Exploiting data pollution bugs."
+    },
+  ]
+
   private milestoneDetails: MilestoneDetails[] = [
     {
       ...this.milestone0,
@@ -179,16 +246,16 @@ export class BackEndSimService {
     return this.milestones.map((m, i) => ({...m, completed: this.userMilestones[i].completed}));
   }
 
-  getUnfinishedMilestones(): MilestoneProgress[] {
-    return this.getMilestoneProgress().filter(x => !x.completed);
+  getUnfinishedMilestones(): MilestoneItem[] {
+    return this.getMilestoneProgress().filter(x => !x.completed).map((y, i) => ({...y, description: this.milestoneItems[i].description}));
   }
 
   getAcheivements(): Achievement[] {
-    const userProgress: UserProgress[] = this.knoledgePaths.map(x => ({...x, milestoneProgress: this.getMilestoneProgress(x.milestones)} as UserProgress));
+    const userProgress: UserProgress[] = this.knoledgePaths.map(x => ({...x, milestoneProgress: this.getMilestoneProgress(x.milestones)}));
     return userProgress.filter(p => p.milestoneProgress.every(m => m.completed)).map(x => x.achievement);
   }
 
   getUserProgress(): UserProgress[] {
-    return this.knoledgePaths.map(x => ({ ...x, milestoneProgress: this.getMilestoneProgress(x.milestones)} as UserProgress));
+    return this.knoledgePaths.map(x => ({ ...x, milestoneProgress: this.getMilestoneProgress(x.milestones)}));
   }
 }

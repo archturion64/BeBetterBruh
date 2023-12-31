@@ -14,9 +14,17 @@ import { MilestoneStore } from '../data/milestone.store';
         <div>{{store.error()}}</div>
       } 
     </div>
-    <div>
+    <div class="flex flex-wrap">
       @for (milestone of store.milestones(); track milestone.id) {
-        {{ milestone.name }}
+        <div class="card w-96 bg-base-100 shadow-xl m-9">
+          <div class="card-body">
+            <h2 class="card-title">{{milestone.name}}</h2>
+            <p>{{milestone.description}}</p>
+            <div class="card-actions justify-end">
+              <button class="btn btn-primary">Start Learning</button>
+            </div>
+          </div>
+        </div>
       }
     </div>
   `,

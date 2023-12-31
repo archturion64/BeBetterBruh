@@ -12,6 +12,6 @@ export class ProgressService {
 
 
     getUserProgress(): Observable<UserProgress[]> {
-        return of(this.beSim.getUserProgress()).pipe(delay(2000));
+        return of(this.beSim.getUserProgress()).pipe(delay(1000));
     }
 }

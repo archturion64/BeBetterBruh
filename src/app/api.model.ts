@@ -15,6 +15,7 @@ export interface MilestoneProgress extends Milestone {
     completed: boolean
 }
 
+
 export interface MilestoneItem extends Milestone {
     description: string
 }
