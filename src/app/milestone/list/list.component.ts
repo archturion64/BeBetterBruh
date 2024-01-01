@@ -25,6 +25,8 @@ import { MilestoneStore } from '../data/milestone.store';
             </div>
           </div>
         </div>
+      } @empty {
+        <h1 class="text-xl italic m-5">List is empty.</h1>
       }
     </div>
   `,

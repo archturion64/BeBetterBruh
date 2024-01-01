@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Achievement, Milestone, MilestoneDetails, MilestoneItem, MilestoneProgress, UserProgress } from './api.model';
+import { Achievement, Milestone, MilestoneDetails, MilestoneItem, MilestoneProgress, UserAchievement, UserProgress } from './api.model';
 
 
 interface UserMilestones {
@@ -23,10 +23,7 @@ export class BackEndSimService {
   private readonly acheivement1: Achievement = { id: 1, name: 'TheJourney' };
   private readonly acheivement2: Achievement = { id: 2, name: 'Infiltrator' };
   private readonly acheivement3: Achievement = { id: 3, name: 'Defender' };
-
-  private readonly achievements: Achievement[] = [
-    this.acheivement0, this.acheivement1, this.acheivement2, this.acheivement3
-  ];
+  private readonly acheivement4: Achievement = { id: 4, name: 'Moar' };
 
   private readonly milestone0: Milestone = { id: 0, name: 'HTML' };
   private readonly milestone1: Milestone = { id: 1, name: 'CSS' };
@@ -250,9 +247,11 @@ export class BackEndSimService {
     return this.getMilestoneProgress().filter(x => !x.completed).map((y, i) => ({...y, description: this.milestoneItems[i].description}));
   }
 
-  getAcheivements(): Achievement[] {
+  getAcheivements(): UserAchievement[] {
     const userProgress: UserProgress[] = this.knoledgePaths.map(x => ({...x, milestoneProgress: this.getMilestoneProgress(x.milestones)}));
-    return userProgress.filter(p => p.milestoneProgress.every(m => m.completed)).map(x => x.achievement);
+    const userAchievement: UserAchievement[] =  userProgress.map(p => ({...p.achievement, completed: p.milestoneProgress.every(m => m.completed)}));
+    userAchievement.push({...this.acheivement4, completed: userAchievement.every(x => x.completed)});
+    return userAchievement;
   }
 
   getUserProgress(): UserProgress[] {

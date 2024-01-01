@@ -29,4 +29,8 @@ export interface Achievement {
     name: string
 }
 
+export interface UserAchievement extends Achievement {
+    completed: boolean
+}
+
 
