@@ -9,7 +9,7 @@ import { filter, map } from 'rxjs';
   standalone: true,
   imports: [RouterModule, ThemeSwitcherComponent, CommonModule],
   template: `
-  <div class="navbar grid bg-primary rounded-xl">
+  <div class="navbar grid bg-primary rounded-b-xl">
     <div class="md:navbar-start">
       <div class="md:dropdown">
       <div tabindex="0" role="button" class="hidden md:btn btn-ghost btn-circle">
