@@ -7,6 +7,7 @@ import { LoadingIndicatorComponent } from '../common/loading-indicator/loading-i
 import { AchievementService } from './data/achievement.service';
 import { SublistComponent } from './sublist/sublist.component';
 import { ItemComponent } from './item/item.component';
+import { AchievementComponent } from "../common/achievement/achievement.component";
 
 const routes: Routes = [
   {
@@ -16,18 +17,19 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  declarations: [
-    ListComponent,
-    SublistComponent,
-    ItemComponent
-  ],
-  imports: [
-    CommonModule,
-    RouterModule.forChild(routes),
-    LoadingIndicatorComponent
-  ],
-  providers: [
-    AchievementService
-  ]
+    declarations: [
+        ListComponent,
+        SublistComponent,
+        ItemComponent
+    ],
+    providers: [
+        AchievementService
+    ],
+    imports: [
+        CommonModule,
+        RouterModule.forChild(routes),
+        LoadingIndicatorComponent,
+        AchievementComponent
+    ]
 })
 export class AchievementModule { }

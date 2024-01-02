@@ -1,4 +1,3 @@
-import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 
 @Component({
@@ -6,15 +5,9 @@ import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
   template: `
     
     @defer (on viewport) {
-      <div class="card card-side shadow-xl w-4/6 lg:w-full mt-10 m-5 bg-neutral grid grid-cols-6">
-        <figure><img class="object-contain h-48 mask mask-circle mx-2" src="assets/images/{{imgFile}}.png" width="50" height="50" alt="no image" /></figure>
-        <div class="card-body col-span-5">
-          <h2 class="card-title text-neutral-content text-2xl">{{title}}</h2>
-          <p class="text-neutral-content text-2xl">{{description}}</p>
-        </div>
-      </div>
+      <commmon-achievement [title]="title" [description]="description" [imgFile]="imgFile" ></commmon-achievement>
     }
-    @placeholder () {
+    @placeholder {
       <div class="skeleton w-4/6 lg:w-full mt-10 m-5"></div>
     }
     @loading {
