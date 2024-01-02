@@ -2,16 +2,19 @@ import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 
 @Component({
   selector: 'achievement-item',
+  host: {
+    class: "mt-10 m-5"
+  },
   template: `
     
     @defer (on viewport) {
       <commmon-achievement [title]="title" [description]="description" [imgFile]="imgFile" ></commmon-achievement>
     }
     @placeholder {
-      <div class="skeleton w-4/6 lg:w-full mt-10 m-5"></div>
+      <div class="skeleton"></div>
     }
     @loading {
-      <div class="skeleton w-4/6 lg:w-full mt-10 m-5"></div>
+      <div class="skeleton"></div>
     }
     @error {
       <div>Something went wrong :(</div>

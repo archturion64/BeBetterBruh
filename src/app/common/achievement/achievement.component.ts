@@ -6,7 +6,7 @@ import { CommonModule } from '@angular/common';
   standalone: true,
   imports: [],
   template: `
-      <div class="card card-side shadow-xl w-4/6 lg:w-11/12 mt-10 m-5 bg-neutral grid grid-cols-6">
+      <div class="card card-side shadow-xl bg-neutral grid grid-cols-6">
         <figure><img class="object-contain h-48 mask mask-circle mx-2" src="assets/images/{{imgFile}}.png" width="50" height="50" alt="no image" /></figure>
         <div class="card-body col-span-5">
           <h2 class="card-title text-neutral-content text-2xl">{{title}}</h2>
