@@ -8,6 +8,7 @@ import { ProgressService } from './data/progress.service';
 const routes: Routes = [
   {
     path: '',
+    pathMatch: 'full',
     component: ListComponent
   }
 ];

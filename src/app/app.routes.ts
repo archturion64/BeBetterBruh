@@ -1,9 +1,11 @@
 import { Routes } from '@angular/router';
 import { WelcomeComponent } from './welcome/welcome.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 export const routes: Routes = [
     {   
         path: '', 
+        pathMatch: 'full',
         component: WelcomeComponent 
     },
     {
@@ -17,5 +19,8 @@ export const routes: Routes = [
     {
         path: 'achievements',
         loadChildren: () => import('./achievement/achievement.module').then(m => m.AchievementModule)
-    }
+    },
+    { 
+        path: '**', 
+        component: PageNotFoundComponent }
 ];

@@ -12,6 +12,7 @@ import { AchievementComponent } from "../common/achievement/achievement.componen
 const routes: Routes = [
   {
     path: '',
+    pathMatch: 'full',
     component: ListComponent
   }
 ];
