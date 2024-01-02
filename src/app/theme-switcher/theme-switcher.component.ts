@@ -8,7 +8,7 @@ import { FormsModule } from '@angular/forms';
   template: `
       <label class="flex cursor-pointer gap-2 md:flex-col flex-row">
         <span class="label-text">Blondy</span> 
-        <input type="checkbox" class="toggle theme-controller" 
+        <input type="checkbox" class="toggle theme-controller" id="themeToggle"
           [(ngModel)]="useDarkMode" (ngModelChange)="useDarkModeChange.emit(useDarkMode)" />
         <span class="label-text">Grufty</span> 
       </label>
