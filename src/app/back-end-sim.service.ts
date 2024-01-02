@@ -129,7 +129,7 @@ export class BackEndSimService {
     },
     {
       ...this.milestone6,
-      description: "Nuild tools, package managers ans servers."
+      description: "Build tools, package managers and servers."
     },
     {
       ...this.milestone7,

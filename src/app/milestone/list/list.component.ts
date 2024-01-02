@@ -4,7 +4,7 @@ import { MilestoneStore } from '../data/milestone.store';
 @Component({
   selector: 'milestone-list',
   host: {
-    class:'w-full'
+    class:'container'
   },
   template: `
     <div>

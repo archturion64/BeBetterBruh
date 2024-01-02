@@ -4,7 +4,7 @@ import { ProgressStore } from '../data/progress.store';
 @Component({
   selector: 'progress-list',
   host: {
-    class:'w-full'
+    class:'container'
   },
   template: `
     <div>

@@ -3,7 +3,7 @@ import { AchievementStore } from '../data/achievement.store';
 
 @Component({
   host: {
-    class:'w-full'
+    class:'container'
   },
   selector: 'achievement-list',
   template: `

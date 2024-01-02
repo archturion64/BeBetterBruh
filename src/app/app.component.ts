@@ -9,11 +9,17 @@ import { FooterComponent } from "./footer/footer.component";
     standalone: true,
     template: `
       <div class="container mx-auto min-h-screen shadow-lg flex flex-col items-center rounded-2xl"
-      [attr.data-theme]="(useDarkMode ? 'grufty' : 'blondy')">
+        [attr.data-theme]="(useDarkMode ? 'grufty' : 'blondy')">
         <app-navbar class="w-full sticky top-0 z-50" [(useDarkMode)]="useDarkMode" (useDarkModeChange)="onThemeChange($event)"></app-navbar>
         <router-outlet></router-outlet>
       </div>
-      <app-footer></app-footer>
+      @defer (on viewport) {
+        <app-footer></app-footer>
+      }
+      @placeholder {
+        <div class="skeleton w-full h-20" ></div>
+      }
+      
     `,
     styles: ``,
     changeDetection: ChangeDetectionStrategy.OnPush,
