@@ -20,7 +20,7 @@ import { MilestoneStore } from '../data/milestone.store';
                 <h2 class="card-title">{{milestone.name}}</h2>
                 <p>{{milestone.description}}</p>
                 <div class="card-actions justify-end">
-                  <button class="btn btn-primary">Start Learning</button>
+                  <button class="btn btn-primary" [routerLink]="['.', milestone.id]">Start Learning</button>
                 </div>
               </div>
             </div>

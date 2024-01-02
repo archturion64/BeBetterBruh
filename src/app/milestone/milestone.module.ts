@@ -4,18 +4,24 @@ import { RouterModule, Routes } from '@angular/router';
 import { MilestoneService } from './data/milestone.service';
 import { LoadingIndicatorComponent } from "../common/loading-indicator/loading-indicator.component";
 import { ListComponent } from './list/list.component';
+import { ItemComponent } from './item/item.component';
 
 const routes: Routes = [
   {
     path: '',
     pathMatch: 'full',
     component: ListComponent
+  },
+  {
+    path: ':id',
+    component: ItemComponent
   }
 ];
 
 @NgModule({
   declarations: [
-    ListComponent
+    ListComponent,
+    ItemComponent
   ],
   imports: [
     CommonModule,

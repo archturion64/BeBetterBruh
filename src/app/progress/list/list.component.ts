@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { ProgressStore } from '../data/progress.store';
+import { MilestoneProgress } from '../../api.model';
 
 @Component({
   selector: 'progress-list',
@@ -26,7 +27,7 @@ import { ProgressStore } from '../data/progress.store';
                 
                   <p class="my-6">Earn the <strong>{{progress.achievement.name}}</strong> acheivement by completing this course!</p>
                   <div class="card-actions justify-end">
-                    <button class="btn btn-primary">Continue Improving</button>
+                    <button class="btn btn-primary" [routerLink]="['../milestones', getNextSuggestion(progress.milestoneProgress)]">Continue Improving</button>
                   </div>
               </div>
             </div>
@@ -42,5 +43,9 @@ import { ProgressStore } from '../data/progress.store';
 export class ListComponent {
 
   store = inject(ProgressStore);
+
+  getNextSuggestion(mp: MilestoneProgress[]): number {
+      return mp.find(x => !x.completed)?.id ?? 999;
+  }
 
 }
