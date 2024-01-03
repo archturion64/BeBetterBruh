@@ -10,7 +10,7 @@ import { CommonModule } from '@angular/common';
         <figure><img class="object-contain h-48 mask mask-circle mx-2" src="assets/images/{{imgFile}}.png" width="50" height="50" alt="no image" /></figure>
         <div class="card-body col-span-5">
           <h2 class="card-title text-neutral-content text-2xl">{{title}}</h2>
-          <p class="text-neutral-content text-2xl">{{description}}</p>
+          <p class="text-neutral-content text-lg">{{description}}</p>
         </div>
       </div>
   `,

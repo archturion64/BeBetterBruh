@@ -26,9 +26,11 @@ import { MilestoneProgress } from '../../api.model';
                   </ul>
                 
                   <p class="my-6">Earn the <strong>{{progress.achievement.name}}</strong> acheivement by completing this course!</p>
-                  <div class="card-actions justify-end">
-                    <button class="btn btn-primary" [routerLink]="['../milestones', getNextSuggestion(progress.milestoneProgress)]">Continue Improving</button>
+                  @if(getNextSuggestion(progress.milestoneProgress) >= 0) {
+                    <div class="card-actions justify-end">
+                    <button class="btn btn-primary" [routerLink]="['../milestones', getNextSuggestion(progress.milestoneProgress) ]">Continue Improving</button>
                   </div>
+                  }
               </div>
             </div>
           }
@@ -45,7 +47,7 @@ export class ListComponent {
   store = inject(ProgressStore);
 
   getNextSuggestion(mp: MilestoneProgress[]): number {
-      return mp.find(x => !x.completed)?.id ?? 999;
+      return mp.find(x => !x.completed)?.id ?? -1;
   }
 
 }

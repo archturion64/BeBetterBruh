@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Achievement, Milestone, MilestoneDetails, MilestoneItem, MilestoneProgress, UserAchievement, UserProgress } from './api.model';
+import { Achievement, Milestone, MilestoneDetails, MilestoneDetailsProgress, MilestoneItem, MilestoneProgress, UserAchievement, UserProgress } from './api.model';
 
 
 interface UserMilestones {
@@ -172,11 +172,131 @@ export class BackEndSimService {
   private milestoneDetails: MilestoneDetails[] = [
     {
       ...this.milestone0,
-      content: "This is a description for HTML"
+      content: `
+      HTML, or HyperText Markup Language, is the standard language used to create and design documents on the World Wide Web. It serves as the backbone for structuring content on web pages. HTML allows you to organize text, images, links, forms, and other types of media into a cohesive and visually appealing format. Here's a brief overview of how HTML works:
+      
+      Tags: HTML documents are made up of HTML tags, which are enclosed in angle brackets (< >). Tags are used to define and structure the content of a webpage. They usually come in pairs – an opening tag and a closing tag – with the content placed between them.
+      <tagname>Content goes here</tagname>
+      For example:
+        <p>This is a paragraph.</p>
+  
+      Elements: An HTML tag and its content together form an HTML element. Elements are the building blocks of a webpage. Some common HTML elements include headings (<h1>, <h2>, ... <h6>), paragraphs (<p>), lists (<ul>, <ol>, <li>), links (<a>), images (<img>), and more.
+        <h1>This is a heading</h1>
+        <p>This is a paragraph.</p>
+  
+      Attributes: HTML tags can also have attributes, which provide additional information about the element. Attributes are always included in the opening tag and are usually in name/value pairs.
+        <tagname attribute="value">Content goes here</tagname>
+      For example: 
+        <a href="https://www.example.com">Visit Example.com</a>
+  
+      Document Structure: An HTML document typically has a structure that includes a head and a body. The head contains meta-information about the document, such as the title and links to stylesheets or scripts. The body contains the actual content of the webpage.
+        <!DOCTYPE html>
+        <html>
+          <head>
+            <title>Document Title</title>
+          </head>
+          <body>
+            <!-- Content goes here -->
+          </body>
+        </html>
+  
+      Nesting: HTML elements can be nested inside one another. Nesting should follow a proper hierarchy, and closing tags must match the opening tags in the correct order.
+        <div>
+          <p>This paragraph is nested inside a div element.</p>
+        </div>
+  
+      HTML5: HTML has evolved over the years, and the latest version is HTML5. HTML5 introduced new semantic elements like <header>, <nav>, <article>, <section>, <footer>, etc., which provide a clearer structure to web documents.
+  
+      This is just a basic introduction to HTML. As you explore web development further, you'll encounter CSS (Cascading Style Sheets) for styling and JavaScript for adding interactivity to your web pages, creating a complete and dynamic web experience.
+      `
     },
     {
       ...this.milestone1,
-      content: "This is a description for CSS"
+      content: `
+      CSS, or Cascading Style Sheets, is a style sheet language used to describe the presentation of a document written in HTML or XML. It defines how the elements of a web page should be displayed, including their layout, colors, fonts, and other visual aspects. The separation of content (HTML) and presentation (CSS) allows for greater flexibility and maintainability in web development. Here are the key concepts of CSS:
+
+      Selectors and Declarations:
+        Selectors: CSS uses selectors to target HTML elements that you want to style. Selectors can be based on element names, classes, IDs, attributes, and more.
+
+          h1 {
+            color: blue;
+          }
+
+          .my-class {
+            font-size: 16px;
+          }
+
+        Declarations: Declarations consist of a property and a value. They define the style rules for the selected elements.
+
+          selector {
+              property: value;
+          }
+
+      Properties and Values:
+        Properties: These are the specific style attributes you want to change, such as color, font-size, margin, padding, etc.
+        Values: These are the specific settings you apply to the properties, such as red, 12px, 20%, center, etc.
+
+          p {
+              color: green;
+              font-size: 18px;
+              margin-top: 10px;
+          }
+
+      Selectors Hierarchy and Specificity:
+      CSS rules can be more specific by combining multiple selectors or using more specific selectors like IDs. Specificity determines which style rule is applied when conflicting rules exist.
+
+        /* More specific selector */
+        #unique-id .specific-class {
+            color: purple;
+        }
+
+      Box Model:
+      The box model describes how elements are structured in terms of content, padding, border, and margin.
+      CSS properties like width, height, padding, border, and margin are used to control the dimensions and spacing of elements.
+
+        .box {
+            width: 200px;
+            height: 100px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            margin: 20px;
+        }
+
+      Flexbox and Grid:
+      CSS provides layout mechanisms like Flexbox and Grid to create more sophisticated and responsive page layouts.
+
+        .flex-container {
+            display: flex;
+            justify-content: space-between;
+        }
+
+      Responsive Design:
+          Media queries allow you to apply different styles based on the characteristics of the device, such as screen size, resolution, or orientation.
+
+          @media screen and (max-width: 600px) {
+              body {
+                  font-size: 14px;
+              }
+          }
+
+      Transitions and Animations:
+          CSS can be used to create smooth transitions between different states of an element and animations for dynamic effects.
+
+          .transition-example {
+              transition: all 0.3s ease-in-out;
+          }
+
+      Vendor Prefixes:
+          Some CSS properties might require vendor prefixes to ensure compatibility with different web browsers.
+
+            .example {
+                -webkit-border-radius: 5px;
+                -moz-border-radius: 5px;
+                border-radius: 5px;
+            }
+
+      CSS is a powerful tool that, when used effectively, can significantly enhance the visual appeal and functionality of a website. It works hand-in-hand with HTML and JavaScript to create modern and responsive web pages.
+      `
     },
     {
       ...this.milestone2,
@@ -257,4 +377,23 @@ export class BackEndSimService {
   getUserProgress(): UserProgress[] {
     return this.knoledgePaths.map(x => ({ ...x, milestoneProgress: this.getMilestoneProgress(x.milestones)}));
   }
+
+  getMilestoneDetailsProgress(id: number): MilestoneDetailsProgress {
+    const milestoneProgress = this.getMilestoneProgress();
+    const idx = milestoneProgress.findIndex(x => x.id === id);
+    if (idx < 0) {
+      throw new Error("invalid id");
+    }
+    return {...milestoneProgress[idx], content: this.milestoneDetails[idx].content};
+  }
+
+  completeMilestone(id: number): void {
+    console.log('complete id', id)
+    const idx = this.userMilestones.findIndex(x => x.id === id);
+    if (idx < 0) {
+      throw new Error("invalid id");
+    }
+    this.userMilestones[idx] = {...this.userMilestones[idx], completed: true};
+  }
+
 }

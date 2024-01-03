@@ -24,6 +24,10 @@ export interface MilestoneDetails extends Milestone {
     content: string
 }
 
+export interface MilestoneDetailsProgress extends MilestoneDetails {
+    completed: boolean
+}
+
 export interface Achievement {
     id: number,
     name: string

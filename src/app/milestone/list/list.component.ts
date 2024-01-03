@@ -33,7 +33,6 @@ import { MilestoneStore } from '../data/milestone.store';
   `,
   styles: ``,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  providers: [MilestoneStore]
 })
 export class ListComponent {
 

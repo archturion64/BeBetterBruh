@@ -5,6 +5,7 @@ import { MilestoneService } from './data/milestone.service';
 import { LoadingIndicatorComponent } from "../common/loading-indicator/loading-indicator.component";
 import { ListComponent } from './list/list.component';
 import { ItemComponent } from './item/item.component';
+import { MilestoneStore } from './data/milestone.store';
 
 const routes: Routes = [
   {
@@ -29,7 +30,8 @@ const routes: Routes = [
     LoadingIndicatorComponent
   ],
   providers: [
-      MilestoneService
+      MilestoneService,
+      MilestoneStore
   ],
   exports: [RouterModule]
 })
