@@ -8,7 +8,7 @@ import {
   withState,
 } from '@ngrx/signals';
 
-type CallState = 'init' | 'loading' | 'loaded' | { error: string };
+export type CallState = 'init' | 'loading' | 'loaded' | { error: string };
 
 type NamedCallStateSlice<Prefix extends string> = {
   [K in Prefix as `${K}CallState`]: CallState;
@@ -22,6 +22,7 @@ function getCallStateKeys( prefix?: string) {
   return {
     callStateKey: prefix ?  `${prefix}CallState` : 'callState',
     loadingKey: prefix ? `${prefix}Loading` : 'loading',
+    loadedKey: prefix ? `${prefix}Loaded` : 'loaded',
     errorKey: prefix ? `${prefix}Error` : 'error',
   };
 }
@@ -30,8 +31,9 @@ export function withCallState<Prefix extends string>(prefix: Prefix): SignalStor
   { state: {}, signals: {}, methods: {} },
   {
     state: NamedCallStateSlice<Prefix>,
-    signals: {
-      [K in Prefix as `${K}Loading`]: Signal<boolean>} &
+    signals: 
+      {[K in Prefix as `${K}Loading`]: Signal<boolean>} &
+      {[K in Prefix as `${K}Loaded`]: Signal<boolean>} &
       {[K in Prefix as `${K}Error`]: Signal<string | null>},
     methods: {}
   }
@@ -46,6 +48,7 @@ export function withCallState(prefix?: string): SignalStoreFeature<
     },
     signals: {
       loading: Signal<boolean>;
+      loaded: Signal<boolean>;
       error: Signal<string | null>
     },
     methods: {}
@@ -54,7 +57,7 @@ export function withCallState(prefix?: string): SignalStoreFeature<
 
 // Implementation with Internal View
 export function withCallState<Prefix extends string>(prefix: Prefix): SignalStoreFeature {
-  const { callStateKey, errorKey, loadingKey } = getCallStateKeys(prefix);
+  const { callStateKey, errorKey, loadingKey, loadedKey } = getCallStateKeys(prefix);
 
   return signalStoreFeature(
     withState({ [callStateKey]: 'init' }),
@@ -64,6 +67,7 @@ export function withCallState<Prefix extends string>(prefix: Prefix): SignalStor
 
       return {
         [loadingKey]: computed(() => callState() === 'loading'),
+        [loadedKey]: computed(() => callState() === 'loaded'),
         [errorKey]: computed(() => {
           const v = callState();
           return typeof v === 'object' ? v.error : null;
@@ -73,40 +77,32 @@ export function withCallState<Prefix extends string>(prefix: Prefix): SignalStor
   );
 }
 
-export function setLoading<Prop extends string>(
-  prop?: Prop
-): NamedCallStateSlice<Prop> | CallStateSlice {
+export function setLoading<Prop extends string>(prop?: Prop): NamedCallStateSlice<Prop> | CallStateSlice {
   if (prop) {
     return { [`${prop}CallState`]: 'loading' } as NamedCallStateSlice<Prop>;
   }
-
   return { callState: 'loading' };
 }
 
-export function setLoaded<Prop extends string>(
-  prop?: Prop
-): NamedCallStateSlice<Prop> | CallStateSlice {
-
+export function setLoaded<Prop extends string>(prop?: Prop): NamedCallStateSlice<Prop> | CallStateSlice {
   if (prop) {
     return { [`${prop}CallState`]: 'loaded' } as NamedCallStateSlice<Prop>;
   }
-  else {
-    return { callState: 'loaded' };
-
-  }
+  return { callState: 'loaded' };
 }
 
-export function setError<Prop extends string>(
-  error: string,
-  prop?: Prop,
-  ): NamedCallStateSlice<Prop> | CallStateSlice {
+export function setInit<Prop extends string>(prop?: Prop): NamedCallStateSlice<Prop> | CallStateSlice {
+  if (prop) {
+    return { [`${prop}CallState`]: 'init' } as NamedCallStateSlice<Prop>;
+  }
+  return { callState: 'init' };
+}
 
-    if (prop) {
-      return { [`${prop}CallState`]: { error } } as NamedCallStateSlice<Prop>;
-    }
-    else {
-      return { callState: { error } };
-    }
+export function setError<Prop extends string>(error: string, prop?: Prop): NamedCallStateSlice<Prop> | CallStateSlice {
+  if (prop) {
+    return { [`${prop}CallState`]: { error } } as NamedCallStateSlice<Prop>;
+  }
+  return { callState: { error } };
 }
 
 /*

@@ -6,6 +6,7 @@ import { LoadingIndicatorComponent } from "../common/loading-indicator/loading-i
 import { ListComponent } from './list/list.component';
 import { ItemComponent } from './item/item.component';
 import { MilestoneStore } from './data/milestone.store';
+import { ButtonWithFeedbackComponent } from "../common/button-with-feedback/button-with-feedback.component";
 
 const routes: Routes = [
   {
@@ -20,19 +21,20 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  declarations: [
-    ListComponent,
-    ItemComponent
-  ],
-  imports: [
-    CommonModule,
-    RouterModule.forChild(routes),
-    LoadingIndicatorComponent
-  ],
-  providers: [
-      MilestoneService,
-      MilestoneStore
-  ],
-  exports: [RouterModule]
+    declarations: [
+        ListComponent,
+        ItemComponent
+    ],
+    providers: [
+        MilestoneService,
+        MilestoneStore
+    ],
+    exports: [RouterModule],
+    imports: [
+        CommonModule,
+        RouterModule.forChild(routes),
+        LoadingIndicatorComponent,
+        ButtonWithFeedbackComponent
+    ]
 })
 export class MilestoneModule { }

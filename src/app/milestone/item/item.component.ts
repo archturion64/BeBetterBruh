@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, Input, OnInit, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, OnDestroy, OnInit, inject } from '@angular/core';
 import { MilestoneStore } from '../data/milestone.store';
 
 @Component({
@@ -7,8 +7,6 @@ import { MilestoneStore } from '../data/milestone.store';
     class: 'container'
   },
   template: `
-
-
     <div class="text-sm breadcrumbs m-5">
       <ul>
         <li><a routerLink="/milestones">Milestones</a></li> 
@@ -25,21 +23,20 @@ import { MilestoneStore } from '../data/milestone.store';
         <div class="whitespace-pre-line overflow-auto">{{store.milestoneDetails()?.content}}</div>
         <div class="m-10 grid grid-cols-8 md:grid-cols-2  gap-4">
           <button type="button" class="btn" routerLink="/milestones">back to milestones</button>
-          @if (store.milestoneDetails()?.completed) {
-            <button type="button" class="btn btn-primary" disabled>completed</button>
-          } @else {
-            <button type="button" class="btn btn-primary" (click)="store.completeMilestone(store.milestoneDetails()?.id ?? -1)">complete</button>
+          @if (!store.milestoneDetails()?.completed || store.completeLoaded()) {
+            <common-button-with-feedback 
+              [callState]="store.completeCallState()" 
+              (clickEvent)="store.completeMilestone(store.milestoneDetails()?.id ?? -1)">
+            </common-button-with-feedback>
           }
-          
         </div>
       </div>
-     
     }
   `,
   styles: ``,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class ItemComponent implements OnInit {
+export class ItemComponent implements OnInit, OnDestroy {
 
   @Input() id!: string; // router param
 
@@ -47,6 +44,10 @@ export class ItemComponent implements OnInit {
 
   ngOnInit(): void {
     this.store.getMilestone(Number(this.id));
+  }
+
+  ngOnDestroy(): void {
+    this.store.clearCompleteState();
   }
 
 }

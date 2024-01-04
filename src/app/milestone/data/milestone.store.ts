@@ -3,9 +3,9 @@ import { patchState, signalStore, withHooks, withMethods, withState } from "@ngr
 import { inject } from "@angular/core";
 import { MilestoneService } from "./milestone.service";
 import { rxMethod } from '@ngrx/signals/rxjs-interop';
-import { catchError, pipe, switchMap, tap } from "rxjs";
+import { pipe, switchMap, tap } from "rxjs";
 import { tapResponse } from '@ngrx/operators';
-import { setLoading, withCallState, setError, setLoaded } from "../../common/call-state-feature";
+import { setLoading, withCallState, setError, setLoaded, setInit } from "../../common/call-state-feature";
 import { MilestoneItem } from "../../api.model";
 
 
@@ -75,7 +75,8 @@ export const MilestoneStore = signalStore(
                 )
                 ),
             )
-        )
+        ),
+        clearCompleteState: () => patchState(store, setInit('complete'))
     })),
     withHooks({
         onInit(store) {
