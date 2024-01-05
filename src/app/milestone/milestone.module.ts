@@ -7,6 +7,8 @@ import { ListComponent } from './list/list.component';
 import { ItemComponent } from './item/item.component';
 import { MilestoneStore } from './data/milestone.store';
 import { ButtonWithFeedbackComponent } from "../common/button-with-feedback/button-with-feedback.component";
+import { AchievementComponent } from "../common/achievement/achievement.component";
+import { NotificationComponent } from "../common/notification/notification.component";
 
 const routes: Routes = [
   {
@@ -34,7 +36,9 @@ const routes: Routes = [
         CommonModule,
         RouterModule.forChild(routes),
         LoadingIndicatorComponent,
-        ButtonWithFeedbackComponent
+        ButtonWithFeedbackComponent,
+        AchievementComponent,
+        NotificationComponent
     ]
 })
 export class MilestoneModule { }

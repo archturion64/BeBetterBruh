@@ -4,7 +4,7 @@ import { CommonModule } from '@angular/common';
 @Component({
   selector: 'commmon-achievement',
   standalone: true,
-  imports: [],
+  imports: [CommonModule],
   template: `
       <div class="card card-side shadow-xl bg-neutral grid grid-cols-6">
         <figure><img class="object-contain h-48 mask mask-circle mx-2" src="assets/images/{{imgFile}}.png" width="50" height="50" alt="no image" /></figure>

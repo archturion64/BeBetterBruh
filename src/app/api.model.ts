@@ -26,6 +26,7 @@ export interface MilestoneDetails extends Milestone {
 
 export interface MilestoneDetailsProgress extends MilestoneDetails {
     completed: boolean
+    onCompletion: Achievement[]
 }
 
 export interface Achievement {

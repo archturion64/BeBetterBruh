@@ -368,7 +368,7 @@ export class BackEndSimService {
   }
 
   getAcheivements(): UserAchievement[] {
-    const userProgress: UserProgress[] = this.knoledgePaths.map(x => ({...x, milestoneProgress: this.getMilestoneProgress(x.milestones)}));
+    const userProgress: UserProgress[] = this.getUserProgress();
     const userAchievement: UserAchievement[] =  userProgress.map(p => ({...p.achievement, completed: p.milestoneProgress.every(m => m.completed)}));
     userAchievement.push({...this.acheivement4, completed: userAchievement.every(x => x.completed)});
     return userAchievement;
@@ -384,11 +384,26 @@ export class BackEndSimService {
     if (idx < 0) {
       throw new Error("invalid id");
     }
-    return {...milestoneProgress[idx], content: this.milestoneDetails[idx].content};
+
+    const match = this.getUserProgress().find(x => x.milestoneProgress.some(y => y.id === id));
+    if (match === undefined) {
+      throw new Error("corrupted data");
+    }
+
+    const hasNewAchievement = match.milestoneProgress.filter(z => z.id !== id).every(a => a.completed === true) && match.milestoneProgress.find(x => x.id === id)!.completed === false;
+    const hasCompletedAllAchievements = milestoneProgress.filter( x => x.id != id).every(a => a.completed === true);
+    const onCompletion = [];
+    if(hasNewAchievement) {
+      onCompletion.push(match.achievement);
+    }
+    if(hasCompletedAllAchievements) {
+      onCompletion.push(this.acheivement4);
+    }
+    
+    return {...milestoneProgress[idx], content: this.milestoneDetails[idx].content, onCompletion};
   }
 
   completeMilestone(id: number): void {
-    console.log('complete id', id)
     const idx = this.userMilestones.findIndex(x => x.id === id);
     if (idx < 0) {
       throw new Error("invalid id");
