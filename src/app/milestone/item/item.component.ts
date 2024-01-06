@@ -18,12 +18,16 @@ import { MilestoneDetailsProgress } from '../../api.model';
 
     @if (store.detailsLoading()) {
         <common-loading-indicator></common-loading-indicator>
+
     } @else if (store.detailsError()) {
       <div>{{store.detailsError()}}</div>
     } @else if(store.milestoneDetails()) {
-      @if(store.completeLoaded() && store.milestoneDetails()!.onCompletion) {
-        @defer () {
+      @if(store.completeLoaded() && store.milestoneDetails()!.onCompletion.length > 0) {
+        @defer (on viewport) {
           <common-notification [achievements]="getAchievementNames(store.milestoneDetails())"></common-notification>
+        }
+        @placeholder {
+          <div class="skeleton max-w-md mx-auto z-50 h-28 fixed inset-0"></div>
         }
         
       }
