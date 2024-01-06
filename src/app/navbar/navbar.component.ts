@@ -3,6 +3,7 @@ import { ActivatedRoute, NavigationEnd, Router, RouterModule } from '@angular/ro
 import { ThemeSwitcherComponent } from '../theme-switcher/theme-switcher.component';
 import { CommonModule } from '@angular/common';
 import { filter, map } from 'rxjs';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'app-navbar',
@@ -15,38 +16,40 @@ import { filter, map } from 'rxjs';
       <div tabindex="0" role="button" class="hidden md:btn btn-ghost btn-circle">
         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h7" /></svg>
       </div>
-          @if(routerUrl$ | async; as routerUrl) {
-          <ul tabindex="0" class=" flex gap-4 md:menu md:menu-sm dropdown-content md:mt-3 md:z-[99] md:p-2 md:shadow md:bg-base-100 md:rounded-box md:w-52">
-            <li>
-              <a class="btn btn-ghost text-xl col-span-1" 
-                [ngClass]="routerUrl == '/' ? '!bg-secondary' : '' "  
-                [routerLink] = "['/']">
-                Home
-              </a>
-            </li>
-            <li>
-              <a class="btn btn-ghost text-xl col-span-1  " 
-                [ngClass]="routerUrl == '/progress' ? '!bg-secondary' : '' "  
-                [routerLink] = "['/progress']">
-                My Progress
-              </a>
-            </li>
-            <li>
-              <a class="btn btn-ghost text-xl col-span-1  " 
-                [ngClass]="routerUrl == '/milestones' ? '!bg-secondary' : '' "  
-                [routerLink] = "['/milestones']">
-                Milestones
-              </a>
-            </li>
-            <li>
-              <a class="btn btn-ghost text-xl col-span-1  " 
-                [ngClass]="routerUrl == '/achievements' ? '!bg-secondary' : '' "  
-                [routerLink] = "['/achievements']">
-                Achievements
-              </a>
-            </li>
-          </ul>
-        }
+        <ul tabindex="0" class=" flex gap-4 md:menu md:menu-sm dropdown-content md:mt-3 md:z-[99] md:p-2 md:shadow md:bg-base-100 md:rounded-box md:w-52">
+          <li>
+            <a class="btn btn-ghost text-xl col-span-1" 
+              (click)="routerUrl='/'"
+              [ngClass]="routerUrl == '/' ? '!bg-secondary' : '' "  
+              [routerLink] = "['/']">
+              Home
+            </a>
+          </li>
+          <li>
+            <a class="btn btn-ghost text-xl col-span-1" 
+              (click)="routerUrl='/progress'" 
+              [ngClass]="routerUrl == '/progress' ? '!bg-secondary' : '' "  
+              [routerLink] = "['/progress']">
+              My Progress
+            </a>
+          </li>
+          <li>
+            <a class="btn btn-ghost text-xl col-span-1" 
+              (click)="routerUrl='/milestones'" 
+              [ngClass]="routerUrl == '/milestones' ? '!bg-secondary' : '' "  
+              [routerLink] = "['/milestones']">
+              Milestones
+            </a>
+          </li>
+          <li>
+            <a class="btn btn-ghost text-xl col-span-1"
+              (click)="routerUrl='/achievements'" 
+              [ngClass]="routerUrl == '/achievements' ? '!bg-secondary' : '' "  
+              [routerLink] = "['/achievements']">
+              Achievements
+            </a>
+          </li>
+        </ul>
       </div>
     </div>
 
@@ -58,13 +61,16 @@ import { filter, map } from 'rxjs';
 })
 export class NavbarComponent {
 
+  routerUrl = '/';
+
   // workaround for wrong reported url when direct navigation to lazy loaded module
   activatedRoute = inject(ActivatedRoute);
-  routerUrl$ = inject(Router).events.pipe(
+  _ = inject(Router).events.pipe(
+    takeUntilDestroyed(),
     filter(val => val instanceof NavigationEnd),
     /* @ts-ignore  */ 
-    map((_) => this.activatedRoute._routerState.snapshot.url)
-  );
+    map((_) => this.activatedRoute._routerState.snapshot.url),
+  ).subscribe({next: (data) => this.routerUrl = String(data)});
   
 
   @Input({required: true}) useDarkMode!: boolean;
