@@ -15,7 +15,6 @@ import { MilestoneDetailsProgress } from '../../api.model';
       </ul>
     </div>
 
-
     @if (store.detailsLoading()) {
         <common-loading-indicator></common-loading-indicator>
 
@@ -29,7 +28,6 @@ import { MilestoneDetailsProgress } from '../../api.model';
         @placeholder {
           <div class="skeleton max-w-md mx-auto z-50 h-28 fixed inset-0"></div>
         }
-        
       }
       
       <div class="m-5 flex flex-col">

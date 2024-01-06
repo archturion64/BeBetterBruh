@@ -28,7 +28,7 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
           <li>
             <a class="btn btn-ghost text-xl col-span-1" 
               (click)="routerUrl='/progress'" 
-              [ngClass]="routerUrl == '/progress' ? '!bg-secondary' : '' "  
+              [ngClass]="routerUrl.startsWith('/progress') ? '!bg-secondary' : '' "  
               [routerLink] = "['/progress']">
               My Progress
             </a>
@@ -36,7 +36,7 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
           <li>
             <a class="btn btn-ghost text-xl col-span-1" 
               (click)="routerUrl='/milestones'" 
-              [ngClass]="routerUrl == '/milestones' ? '!bg-secondary' : '' "  
+              [ngClass]="routerUrl.startsWith('/milestones') ? '!bg-secondary' : '' "  
               [routerLink] = "['/milestones']">
               Milestones
             </a>
@@ -44,7 +44,7 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
           <li>
             <a class="btn btn-ghost text-xl col-span-1"
               (click)="routerUrl='/achievements'" 
-              [ngClass]="routerUrl == '/achievements' ? '!bg-secondary' : '' "  
+              [ngClass]="routerUrl.startsWith('/achievements') ? '!bg-secondary' : '' "  
               [routerLink] = "['/achievements']">
               Achievements
             </a>
