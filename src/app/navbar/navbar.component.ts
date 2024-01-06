@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output, inject } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, EventEmitter, Input, Output, inject } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, Router, RouterModule } from '@angular/router';
 import { ThemeSwitcherComponent } from '../theme-switcher/theme-switcher.component';
 import { CommonModule } from '@angular/common';
@@ -62,6 +62,7 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 export class NavbarComponent {
 
   routerUrl = '/';
+  private cd = inject(ChangeDetectorRef);
 
   // workaround for wrong reported url when direct navigation to lazy loaded module
   activatedRoute = inject(ActivatedRoute);
@@ -70,7 +71,11 @@ export class NavbarComponent {
     filter(val => val instanceof NavigationEnd),
     /* @ts-ignore  */ 
     map((_) => this.activatedRoute._routerState.snapshot.url),
-  ).subscribe({next: (data) => this.routerUrl = String(data)});
+  ).subscribe({next: (data) => {
+    this.routerUrl = String(data);
+    this.cd.markForCheck();
+  }
+  });
   
 
   @Input({required: true}) useDarkMode!: boolean;
