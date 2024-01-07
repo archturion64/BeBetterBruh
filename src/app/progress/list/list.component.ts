@@ -10,7 +10,7 @@ import { MilestoneProgress } from '../../api.model';
   template: `
     <div>
       @if (store.loading()) {
-        <common-loading-indicator></common-loading-indicator>
+        <common-loading-indicator/>
       } @else if (store.error()) {
         <div>{{store.error()}}</div>
       } @else {

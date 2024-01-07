@@ -1,14 +1,14 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, EventEmitter, Input, Output, inject } from '@angular/core';
-import { ActivatedRoute, NavigationEnd, Router, RouterModule } from '@angular/router';
+import { ActivatedRoute, NavigationEnd, Router, RouterLink, RouterModule } from '@angular/router';
 import { ThemeSwitcherComponent } from '../theme-switcher/theme-switcher.component';
-import { CommonModule } from '@angular/common';
+import { NgClass } from '@angular/common';
 import { filter, map } from 'rxjs';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'app-navbar',
   standalone: true,
-  imports: [RouterModule, ThemeSwitcherComponent, CommonModule],
+  imports: [RouterLink, ThemeSwitcherComponent, NgClass],
   template: `
   <div class="navbar grid bg-primary rounded-b-xl">
     <div class="md:navbar-start">

@@ -1,7 +1,7 @@
 import { Injectable, inject } from '@angular/core';
 import { Observable, delay, of, throwError } from 'rxjs';
 import { BackEndSimService } from '../../back-end-sim.service';
-import { MilestoneDetailsProgress, MilestoneItem, MilestoneProgress } from '../../api.model';
+import { MilestoneDetailsProgress, MilestoneItem } from '../../api.model';
 
 
 

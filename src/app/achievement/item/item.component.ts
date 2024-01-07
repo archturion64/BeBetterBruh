@@ -8,7 +8,7 @@ import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
   template: `
     
     @defer (on viewport) {
-      <commmon-achievement [title]="title" [description]="description" [imgFile]="imgFile" ></commmon-achievement>
+      <common-achievement [title]="title" [description]="description" [imgFile]="imgFile"/>
     }
     @placeholder {
       <div class="skeleton"></div>

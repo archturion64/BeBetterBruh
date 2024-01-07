@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { NgClass } from '@angular/common';
 import { ListComponent } from './list/list.component';
 import { RouterModule, Routes } from '@angular/router';
 import { LoadingIndicatorComponent } from '../common/loading-indicator/loading-indicator.component';
@@ -19,18 +19,18 @@ const routes: Routes = [
 
 @NgModule({
     declarations: [
-        ListComponent,
-        SublistComponent,
-        ItemComponent
+      ListComponent,
+      SublistComponent,
+      ItemComponent
     ],
     providers: [
-        AchievementService
+      AchievementService
     ],
     imports: [
-        CommonModule,
-        RouterModule.forChild(routes),
-        LoadingIndicatorComponent,
-        AchievementComponent
+      NgClass,
+      RouterModule.forChild(routes),
+      LoadingIndicatorComponent,
+      AchievementComponent
     ]
 })
 export class AchievementModule { }

@@ -5,7 +5,7 @@ import { rxMethod } from '@ngrx/signals/rxjs-interop';
 import { pipe, switchMap, tap } from "rxjs";
 import { tapResponse } from '@ngrx/operators';
 import { setLoading, withCallState, setError, setLoaded } from "../../common/call-state-feature";
-import { Milestone, UserProgress } from "../../api.model";
+import { UserProgress } from "../../api.model";
 
 
 

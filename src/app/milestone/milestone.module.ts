@@ -33,11 +33,9 @@ const routes: Routes = [
     ],
     exports: [RouterModule],
     imports: [
-        CommonModule,
         RouterModule.forChild(routes),
         LoadingIndicatorComponent,
         ButtonWithFeedbackComponent,
-        AchievementComponent,
         NotificationComponent
     ]
 })

@@ -11,40 +11,35 @@ import { UserAchievement } from '../../api.model';
             [ngClass]="achievement.completed ? '' : 'opacity-50' "
             title="{{achievement.name}}"
             description="You know something about web design."
-            imgFile="pixel" >
-          </achievement-item>
+            imgFile="pixel"/>
         }
         @case (1) {
           <achievement-item class="flex" 
             [ngClass]="achievement.completed ? '' : 'opacity-50' "
             title="{{achievement.name}}"
             description="You have knoledge of JavaScript and its eco-system."
-            imgFile="move" >
-          </achievement-item>
+            imgFile="move"/>
         }
         @case (2) {
           <achievement-item class="flex" 
             [ngClass]="achievement.completed ? '' : 'opacity-50' "
             title="{{achievement.name}}"
             description="You know what are tests and how to do them."
-            imgFile="test" >
-          </achievement-item>
+            imgFile="test"/>
         }
         @case (3) {
           <achievement-item class="flex" 
             [ngClass]="achievement.completed ? '' : 'opacity-50' "
             title="{{achievement.name}}"
             description="You are familiar with common attackt vectors from the API penetration testing domain."
-            imgFile="attck" >
-          </achievement-item>
+            imgFile="attck"/>
         }
         @case (4) {
           <achievement-item class="flex" 
             [ngClass]="achievement.completed ? '' : 'opacity-50' "
             title="{{achievement.name}}"
             description="You have completed all existing challenges at the moment."
-            imgFile="moar" >
-          </achievement-item>
+            imgFile="moar"/>
         }
         @default {
           <div>Unknownt Achievement</div>
