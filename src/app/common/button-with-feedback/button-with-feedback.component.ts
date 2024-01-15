@@ -5,7 +5,7 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { TranslateModule } from '@ngx-translate/core';
 
 export function createTranslateLoader(http: HttpClient) {
-  return new TranslateHttpLoader(http, './assets/i18n/achievement/', '.json');
+  return new TranslateHttpLoader(http, './assets/i18n/achievement/', '_merged.json');
 }
 
 @Component({

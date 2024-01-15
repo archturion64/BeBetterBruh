@@ -1,0 +1,9 @@
+{
+    "milestone": {
+        "empty": "List is empty.",
+        "start": "Start Learning",
+        "listTitle": "Milestones",
+        "itemTitle": "Current Milestone",
+        "backBtn": "back to milestones"
+    }
+}

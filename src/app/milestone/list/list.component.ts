@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { MilestoneStore } from '../data/milestone.store';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'milestone-list',
@@ -20,12 +21,12 @@ import { MilestoneStore } from '../data/milestone.store';
                 <h2 class="card-title">{{milestone.name}}</h2>
                 <p>{{milestone.description}}</p>
                 <div class="card-actions justify-end">
-                  <button class="btn btn-primary" [routerLink]="['.', milestone.id]">Start Learning</button>
+                  <button class="btn btn-primary" [routerLink]="['.', milestone.id]">{{'milestone.start' | translate}}</button>
                 </div>
               </div>
             </div>
           } @empty {
-            <h1 class="text-xl italic m-5">List is empty.</h1>
+            <h1 class="text-xl italic m-5">{{'milestone.empty' | translate}}</h1>
           }
         </div>
       }
@@ -37,5 +38,5 @@ import { MilestoneStore } from '../data/milestone.store';
 export class ListComponent {
 
   store = inject(MilestoneStore);
-
+  _ = inject(TranslateService).setDefaultLang('en');
 }

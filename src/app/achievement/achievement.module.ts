@@ -21,7 +21,7 @@ const routes: Routes = [
 ];
 
 export function createTranslateLoader(http: HttpClient) {
-  return new TranslateHttpLoader(http, './assets/i18n/achievement/', '.json');
+  return new TranslateHttpLoader(http, './assets/i18n/achievement/', '_merged.json');
 }
 
 @NgModule({
@@ -44,8 +44,7 @@ export function createTranslateLoader(http: HttpClient) {
             useFactory: (createTranslateLoader),
             deps: [HttpClient]
         },
-        isolate: true,
-        extend: false
+        isolate: true
     })
     ]
 })

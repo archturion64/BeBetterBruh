@@ -1,6 +1,7 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { ProgressStore } from '../data/progress.store';
 import { MilestoneProgress } from '../../api.model';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'progress-list',
@@ -25,10 +26,10 @@ import { MilestoneProgress } from '../../api.model';
                     }
                   </ul>
                 
-                  <p class="my-6">Earn the <strong>{{progress.achievement.name}}</strong> acheivement by completing this course!</p>
+                  <p class="my-6">{{'progress.nextAchievement.text1' | translate}}<strong>{{progress.achievement.name}}</strong>{{'progress.nextAchievement.text2' | translate}}</p>
                   @if(getNextSuggestion(progress.milestoneProgress) >= 0) {
                     <div class="card-actions justify-end">
-                    <button class="btn btn-primary" [routerLink]="['../milestones', getNextSuggestion(progress.milestoneProgress) ]">Continue Improving</button>
+                    <button class="btn btn-primary" [routerLink]="['../milestones', getNextSuggestion(progress.milestoneProgress) ]">{{'progress.nextMilestone' | translate}}</button>
                   </div>
                   }
               </div>
@@ -45,6 +46,7 @@ import { MilestoneProgress } from '../../api.model';
 export class ListComponent {
 
   store = inject(ProgressStore);
+  _ = inject(TranslateService).setDefaultLang('en');
 
   getNextSuggestion(mp: MilestoneProgress[]): number {
       return mp.find(x => !x.completed)?.id ?? -1;

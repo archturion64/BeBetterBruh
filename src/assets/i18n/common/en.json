@@ -1,0 +1,17 @@
+{
+    "common": {
+        "buttonWithFeedback": {
+            "complete": "complete",
+            "loading": "loading",
+            "done": "done!",
+            "error": "error!"
+        },
+        "loadingIndicator": {
+            "text": "Loading. Please stand by..."
+        },
+        "notification": {
+            "newAchievement": "New achievement unlocked:",
+            "achievementLink": "See all"
+        }
+    }
+}
