@@ -22,7 +22,7 @@ export const appConfig: ApplicationConfig = {
             useFactory: (createTranslateLoader),
             deps: [HttpClient]
         },
-        isolate: false
+        isolate: true
     })
     ),
   ]
