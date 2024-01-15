@@ -1,6 +1,6 @@
 import { Routes } from '@angular/router';
-import { WelcomeComponent } from './welcome/welcome.component';
-import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { WelcomeComponent } from './core/welcome/welcome.component';
+import { PageNotFoundComponent } from './core/page-not-found/page-not-found.component';
 
 export const routes: Routes = [
     {   

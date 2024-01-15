@@ -10,43 +10,43 @@ import { UserAchievement } from '../../api.model';
           <achievement-item class="flex" 
             [ngClass]="achievement.completed ? '' : 'opacity-50' "
             title="{{achievement.name}}"
-            description="You know something about web design."
+            description="{{'achievement.description.pixel' | translate}}"
             imgFile="pixel"/>
         }
         @case (1) {
           <achievement-item class="flex" 
             [ngClass]="achievement.completed ? '' : 'opacity-50' "
             title="{{achievement.name}}"
-            description="You have knoledge of JavaScript and its eco-system."
+            description="{{'achievement.description.move' | translate}}"
             imgFile="move"/>
         }
         @case (2) {
           <achievement-item class="flex" 
             [ngClass]="achievement.completed ? '' : 'opacity-50' "
             title="{{achievement.name}}"
-            description="You know what are tests and how to do them."
+            description="{{'achievement.description.test' | translate}}"
             imgFile="test"/>
         }
         @case (3) {
           <achievement-item class="flex" 
             [ngClass]="achievement.completed ? '' : 'opacity-50' "
             title="{{achievement.name}}"
-            description="You are familiar with common attackt vectors from the API penetration testing domain."
+            description="{{'achievement.description.attck' | translate}}"
             imgFile="attck"/>
         }
         @case (4) {
           <achievement-item class="flex" 
             [ngClass]="achievement.completed ? '' : 'opacity-50' "
             title="{{achievement.name}}"
-            description="You have completed all existing challenges at the moment."
+            description="{{'achievement.description.moar' | translate}}"
             imgFile="moar"/>
         }
         @default {
-          <div>Unknownt Achievement</div>
+          <div>{{'achievement.unknown' | translate}}</div>
         }
       }
     } @empty {
-      <h1 class="text-xl italic m-5">List is empty.</h1>
+      <h1 class="text-xl italic m-5">{{'achievement.empty' | translate}}</h1>
     }
   `,
   styles: ``,

@@ -1,6 +1,6 @@
 import { Injectable, inject } from '@angular/core';
 import { Observable, delay, of } from 'rxjs';
-import { BackEndSimService } from '../../back-end-sim.service';
+import { BackEndSimService } from '../../core/back-end-sim.service';
 import { UserAchievement } from '../../api.model';
 
 

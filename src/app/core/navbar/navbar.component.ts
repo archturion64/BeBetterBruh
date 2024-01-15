@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, EventEmitter, Input, Output, inject } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, Router, RouterLink, RouterModule } from '@angular/router';
-import { ThemeSwitcherComponent } from '../theme-switcher/theme-switcher.component';
+import { ThemeSwitcherComponent } from '../../theme-switcher/theme-switcher.component';
 import { NgClass } from '@angular/common';
 import { filter, map } from 'rxjs';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';

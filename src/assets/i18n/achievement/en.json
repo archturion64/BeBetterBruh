@@ -1,0 +1,18 @@
+{
+    "achievement": {
+        "title": {
+            "todos": "Achievements ToDo:",
+            "done": "My Achievements:"
+        },
+        "unknown": "Unknownt Achievement",
+        "empty": "List is empty.",
+        "oops": "Something went wrong :(",
+        "description": {
+            "pixel": "You know something about web design.",
+            "move": "You have knoledge of JavaScript and its eco-system.",
+            "test": "You know what are tests and how to do them.",
+            "attck": "You are familiar with common attackt vectors from the API penetration testing domain.",
+            "moar": "You have completed all existing challenges at the moment."
+        }
+    }
+}

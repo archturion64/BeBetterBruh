@@ -17,7 +17,7 @@ import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
       <div class="skeleton"></div>
     }
     @error {
-      <div>Something went wrong :(</div>
+      <div>{{'achievement.oops' | translate}}</div>
     }
   `,
   styles: ``,

@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { AchievementStore } from '../data/achievement.store';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   host: {
@@ -15,11 +16,11 @@ import { AchievementStore } from '../data/achievement.store';
       } @else {
         <div class="grid grid-cols-2 gap-8 lg:grid-cols-1">
           <div>
-            <h1 class="text-2xl font-bold m-5 mt-20">Achievements ToDo:</h1>
+            <h1 class="text-2xl font-bold m-5 mt-20">{{'achievement.title.todos' | translate}}</h1>
             <achievement-sublist [achievements]="store.achievementsTodo()"/>
           </div>
           <div>
-            <h1 class="text-2xl font-bold m-5 mt-20">My Achievements:</h1>
+            <h1 class="text-2xl font-bold m-5 mt-20">{{'achievement.title.done' | translate}}</h1>
             <achievement-sublist [achievements]="store.achievementsDone()"/>
           </div>
         </div>
@@ -32,4 +33,5 @@ import { AchievementStore } from '../data/achievement.store';
 })
 export class ListComponent {
   store = inject(AchievementStore);
+  _ = inject(TranslateService).setDefaultLang('en');
 }

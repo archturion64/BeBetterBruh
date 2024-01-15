@@ -1,7 +1,11 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { NavbarComponent } from "./navbar/navbar.component";
-import { FooterComponent } from "./footer/footer.component";
+import { NavbarComponent } from "./core/navbar/navbar.component";
+import { FooterComponent } from "./core/footer/footer.component";
+import { HttpClientModule } from '@angular/common/http';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
+
+
 
 @Component({
     selector: 'app-root',
@@ -22,10 +26,18 @@ import { FooterComponent } from "./footer/footer.component";
     `,
     styles: ``,
     changeDetection: ChangeDetectionStrategy.OnPush,
-    imports: [RouterOutlet, NavbarComponent, FooterComponent]
+    imports: [
+      RouterOutlet, 
+      NavbarComponent, 
+      FooterComponent,
+      HttpClientModule,
+      TranslateModule
+    ]
 })
 export class AppComponent {
   title = 'Be better, Bruh!';
+
+  _ = inject(TranslateService).setDefaultLang('en');
 
 
   useDarkMode: boolean = localStorage.getItem('useDarkMode') === 'true';

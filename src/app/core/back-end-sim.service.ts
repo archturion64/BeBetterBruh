@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Achievement, Milestone, MilestoneDetails, MilestoneDetailsProgress, MilestoneItem, MilestoneProgress, UserAchievement, UserProgress } from './api.model';
+import { Achievement, Milestone, MilestoneDetails, MilestoneDetailsProgress, MilestoneItem, MilestoneProgress, UserAchievement, UserProgress } from '../api.model';
 
 
 interface UserMilestones {

@@ -1,0 +1,10 @@
+{
+    "common": {
+        "buttonWithFeedback": {
+            "complete": "complete",
+            "loading": "loading",
+            "done": "done!",
+            "error": "error!"
+        }
+    }
+}

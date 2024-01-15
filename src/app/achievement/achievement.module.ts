@@ -8,6 +8,9 @@ import { AchievementService } from './data/achievement.service';
 import { SublistComponent } from './sublist/sublist.component';
 import { ItemComponent } from './item/item.component';
 import { AchievementComponent } from "../common/achievement/achievement.component";
+import { HttpClient } from '@angular/common/http';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 
 const routes: Routes = [
   {
@@ -16,6 +19,10 @@ const routes: Routes = [
     component: ListComponent
   }
 ];
+
+export function createTranslateLoader(http: HttpClient) {
+  return new TranslateHttpLoader(http, './assets/i18n/achievement/', '.json');
+}
 
 @NgModule({
     declarations: [
@@ -30,7 +37,16 @@ const routes: Routes = [
       NgClass,
       RouterModule.forChild(routes),
       LoadingIndicatorComponent,
-      AchievementComponent
+      AchievementComponent,
+      TranslateModule.forChild({
+        loader: {
+            provide: TranslateLoader,
+            useFactory: (createTranslateLoader),
+            deps: [HttpClient]
+        },
+        isolate: true,
+        extend: false
+    })
     ]
 })
 export class AchievementModule { }

@@ -1,5 +1,4 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
 import { MilestoneService } from './data/milestone.service';
 import { LoadingIndicatorComponent } from "../common/loading-indicator/loading-indicator.component";
@@ -7,8 +6,10 @@ import { ListComponent } from './list/list.component';
 import { ItemComponent } from './item/item.component';
 import { MilestoneStore } from './data/milestone.store';
 import { ButtonWithFeedbackComponent } from "../common/button-with-feedback/button-with-feedback.component";
-import { AchievementComponent } from "../common/achievement/achievement.component";
 import { NotificationComponent } from "../common/notification/notification.component";
+import { HttpClient } from '@angular/common/http';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 
 const routes: Routes = [
   {
@@ -21,6 +22,10 @@ const routes: Routes = [
     component: ItemComponent
   }
 ];
+
+export function createTranslateLoader(http: HttpClient) {
+  return new TranslateHttpLoader(http, './assets/i18n/milestone/', '.json');
+}
 
 @NgModule({
     declarations: [
@@ -36,7 +41,15 @@ const routes: Routes = [
         RouterModule.forChild(routes),
         LoadingIndicatorComponent,
         ButtonWithFeedbackComponent,
-        NotificationComponent
+        NotificationComponent,
+        TranslateModule.forChild({
+          loader: {
+              provide: TranslateLoader,
+              useFactory: (createTranslateLoader),
+              deps: [HttpClient]
+          },
+          isolate: false
+      })
     ]
 })
 export class MilestoneModule { }
